@@ -1,17 +1,32 @@
 import React from "react"
 import Navbar from "./components/Navbar"
-import JournalCard from "./components/JournalCard"
+import Hero from "./components/Hero"
+import Card from "./components/Card"
 import data from "./data"
 
-
 export default function App() {
-    const journals = data.map(place => <JournalCard key={place.title} {...place}/>)
+    const cards = data.map(item => {
+        return (
+            <Card
+                key={item.id}
+                img={item.coverImg}
+                rating={item.stats.rating}
+                reviewCount={item.stats.reviewCount}
+                location={item.location}
+                title={item.title}
+                price={item.price}
+            />
+        )
+    })        
+    
+         
     return (
-        <>
+        <div>
             <Navbar />
-            <div className="container">
-                {journals}
-            </div>
-        </>
+            <Hero />
+            <section className="cards-list">
+                {cards}
+            </section>
+        </div>
     )
 }
